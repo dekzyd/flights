@@ -1,101 +1,61 @@
+import Breadcrumbs from "@/components/breadcrumbs";
+import CheapFlights from "@/components/cheapFlights";
+import ExploreMap from "@/components/exploreMap";
+import Faq from "@/components/faq";
+import FilterComponent from "@/components/filter";
+import MoreFlights from "@/components/moreFlights";
+import PopularAirports from "@/components/popularAirports";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+    <div className="max-w-6xl my-0 mx-auto bg-slate-00">
+      <Image
+        src="/flights_nc_dark_theme_4.svg"
+        alt="flights-header"
+        width={300}
+        height={300}
+        className="w-full"
+      />
+      <main className="bg-slate-700 px-20">
+        <h1 className="capitalize text-center font-normal text-[36px] leading-[44px]">
+          flights
+        </h1>
+        <FilterComponent />
+        <Breadcrumbs />
+        <CheapFlights />
+        <ExploreMap />
+        <PopularAirports />
+        <Faq />
+        <MoreFlights />
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      <footer className="px-20 flex flex-col gap-5 items-center border-y border-solid">
+        <hr className="bg-red-600" />
+        <div>
+          <button>Language . [chosen language]</button>
+          <button>Location . [chosen Location]</button>
+          <button>Currency . [location currency]</button>
+        </div>
+        <p className="text-center w-1/2">
+          Current language and currency options applied: English (United States)
+          - Nigeria - NGN Displayed currencies may differ from the currencies
+          used to purchase flights. Learn more
+        </p>
+        <div>
+          <Link href="#">About</Link>
+          <Link href="#">Privacy</Link>
+          <Link href="#">Terms</Link>
+          <Link href="#">Join user studies</Link>
+          <Link href="#">Feedback</Link>
+          <Link href="#">Help Center</Link>
+        </div>
+        <hr />
       </footer>
+      <div className="px-20 flex justify-center gap-20">
+        <button>International sites dropdown</button>
+        <button>Explore flights dropdown</button>
+      </div>
     </div>
   );
 }
