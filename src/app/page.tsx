@@ -5,6 +5,7 @@ import FAQComponent from "@/components/faq";
 import FilterComponent from "@/components/filter";
 import MoreFlights from "@/components/moreFlights";
 import PopularAirports from "@/components/popularAirports";
+import LanguageLocationCurrency from "@/components/Location";
 
 import Link from "next/link";
 import ThemeToggle from "@/components/theme/ThemeToggle";
@@ -54,6 +55,7 @@ export default function Home() {
         <button>International sites dropdown</button>
         <button>Explore flights dropdown</button>
       </div>
+      {/* <LanguageLocationCurrency /> */}
     </div>
   );
 }
