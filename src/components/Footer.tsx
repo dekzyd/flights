@@ -7,7 +7,7 @@ import PaymentsOutlinedIcon from "@mui/icons-material/PaymentsOutlined";
 const LanguageLocationCurrency = () => {
   return (
     <>
-      <div className="px-20 flex flex-col gap-5 items-center border-y border-solid my-5 py-5">
+      <div className="px-20 flex flex-col gap-5 items-center border-transparent border-y border-solid my-5 py-5">
         <div className="flex gap-8">
           <Button variant="outlined" sx={{ borderRadius: "20px" }}>
             <LanguageIcon fontSize="small" sx={{ mr: "8px" }} />
