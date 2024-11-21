@@ -5,21 +5,16 @@ import Faq from "@/components/faq";
 import FilterComponent from "@/components/filter";
 import MoreFlights from "@/components/moreFlights";
 import PopularAirports from "@/components/popularAirports";
-import Image from "next/image";
+
 import Link from "next/link";
 import ThemeToggle from "@/components/theme/ThemeToggle";
+import ThemedImage from "@/components/ThemedImage";
 
 export default function Home() {
   return (
     <div className="max-w-6xl my-0 mx-auto bg-slate-00">
       <ThemeToggle />
-      <Image
-        src="/flights_nc_dark_theme_4.svg"
-        alt="flights-header"
-        width={300}
-        height={300}
-        className="w-full"
-      />
+      <ThemedImage />
       <main className="bg-slate-700 px-20">
         <h1 className="capitalize text-center font-normal text-[36px] leading-[44px]">
           flights
@@ -35,7 +30,6 @@ export default function Home() {
         <MoreFlights />
       </main>
       <footer className="px-20 flex flex-col gap-5 items-center border-y border-solid">
-        <hr className="bg-red-600" />
         <div>
           <button>Language . [chosen language]</button>
           <button>Location . [chosen Location]</button>

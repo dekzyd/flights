@@ -1,10 +1,13 @@
-"use client"; // Needed for client-side interactivity
+"use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { lightTheme, darkTheme } from "../utils/themes";
 
-const ThemeContext = createContext();
+const ThemeContext = createContext({
+  isDarkMode: false,
+  toggleTheme: () => {},
+});
 
 export const useThemeContext = () => useContext(ThemeContext);
 
