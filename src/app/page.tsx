@@ -1,7 +1,7 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import CheapFlights from "@/components/cheapFlights";
 import ExploreMap from "@/components/exploreMap";
-import Faq from "@/components/faq";
+import FAQComponent from "@/components/faq";
 import FilterComponent from "@/components/filter";
 import MoreFlights from "@/components/moreFlights";
 import PopularAirports from "@/components/popularAirports";
@@ -26,7 +26,7 @@ export default function Home() {
         <CheapFlights />
         <ExploreMap />
         <PopularAirports />
-        <Faq />
+        <FAQComponent />
         <MoreFlights />
       </main>
       <footer className="px-20 flex flex-col gap-5 items-center border-y border-solid">
