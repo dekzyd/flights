@@ -60,6 +60,7 @@ const ExploreMap = () => {
       </Typography>
 
       <Card
+        variant="outlined"
         sx={{
           display: "flex",
           alignItems: "center",
@@ -74,18 +75,19 @@ const ExploreMap = () => {
             alignItems: "center",
             justifyContent: "center",
             borderRadius: "50%",
-            backgroundColor: "#E0F7FA",
-            width: "40px",
-            height: "40px",
-            mr: 2,
+            border: "2px solid #fff",
+            backgroundColor: "#8AB4F8",
+            width: "30px",
+            height: "30px",
           }}
         >
           <Typography
             variant="h6"
             sx={{
-              fontSize: "24px",
+              fontSize: "20px",
               fontWeight: "bold",
-              color: "#007BFF",
+              color: "white",
+              transform: "rotate(-90deg)",
             }}
           >
             ✈
