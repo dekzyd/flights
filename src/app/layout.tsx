@@ -1,17 +1,6 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import { ThemeContextProvider } from "@/context/ThemeContext";
 
 export const metadata: Metadata = {
   title: "Flights",
@@ -25,10 +14,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <head>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </head>
+
+      <body className="">
+        <ThemeContextProvider>{children}</ThemeContextProvider>
       </body>
     </html>
   );

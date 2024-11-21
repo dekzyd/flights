@@ -7,10 +7,12 @@ import MoreFlights from "@/components/moreFlights";
 import PopularAirports from "@/components/popularAirports";
 import Image from "next/image";
 import Link from "next/link";
+import ThemeToggle from "@/components/theme/ThemeToggle";
 
 export default function Home() {
   return (
     <div className="max-w-6xl my-0 mx-auto bg-slate-00">
+      <ThemeToggle />
       <Image
         src="/flights_nc_dark_theme_4.svg"
         alt="flights-header"
@@ -22,7 +24,9 @@ export default function Home() {
         <h1 className="capitalize text-center font-normal text-[36px] leading-[44px]">
           flights
         </h1>
-        <FilterComponent />
+        <div className="">
+          <FilterComponent />
+        </div>
         <Breadcrumbs />
         <CheapFlights />
         <ExploreMap />
