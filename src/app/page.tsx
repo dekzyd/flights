@@ -1,8 +1,8 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import CheapFlights from "@/components/cheapFlights";
 import ExploreMap from "@/components/exploreMap";
-import FAQComponent from "@/components/faq";
-import FilterComponent from "@/components/filter";
+import Faq from "@/components/faq";
+import FlightSearchBar from "@/components/filter";
 import MoreFlights from "@/components/moreFlights";
 import PopularAirports from "@/components/popularAirports";
 import LanguageLocationCurrency from "@/components/Footer";
@@ -19,7 +19,7 @@ export default function Home() {
           flights
         </h1>
         <div className="">
-          <FilterComponent />
+          <FlightSearchBar />
         </div>
         <Breadcrumbs />
         <CheapFlights />
