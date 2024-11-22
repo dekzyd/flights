@@ -15,8 +15,8 @@ export default function Home() {
     <div className="max-w-6xl my-0 mx-auto bg-slate-00">
       <ThemeToggle />
       <ThemedImage />
-      <main className="bg-slate-700 px-20">
-        <h1 className="capitalize text-center font-normal text-[36px] leading-[44px]">
+      <main className="px-20">
+        <h1 className="capitalize text-center font-normal text-5xl leading-[44px]">
           flights
         </h1>
         <div className="">
