@@ -7,12 +7,13 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
+import Image from "next/image";
 
 const ExploreMap = () => {
   return (
     <Container sx={{ py: 4 }}>
       {/* Section Title */}
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h6" gutterBottom>
         Find flights from Abuja to anywhere
       </Typography>
 
@@ -22,6 +23,9 @@ const ExploreMap = () => {
           width: "100%",
           height: "300px",
           backgroundColor: "#2E3B4E", // Placeholder background
+          backgroundImage: "url(/staticmap.png)",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -32,25 +36,18 @@ const ExploreMap = () => {
         <Typography
           variant="button"
           sx={{
+            fontSize: "13px",
             position: "absolute",
-            bottom: "16px",
-            backgroundColor: "#000",
-            color: "#fff",
+            backgroundColor: "#202124",
+            color: "#aecbfa",
             px: 2,
+            textTransform: "capitalize",
             py: 1,
             borderRadius: "20px",
             cursor: "pointer",
           }}
         >
           Explore destinations
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          color="textSecondary"
-          sx={{ textAlign: "center", color: "#9E9E9E" }}
-        >
-          {/* Placeholder text for the map */}
-          Map content placeholder
         </Typography>
       </Box>
 
@@ -60,6 +57,7 @@ const ExploreMap = () => {
       </Typography>
 
       <Card
+        variant="outlined"
         sx={{
           display: "flex",
           alignItems: "center",
@@ -74,18 +72,19 @@ const ExploreMap = () => {
             alignItems: "center",
             justifyContent: "center",
             borderRadius: "50%",
-            backgroundColor: "#E0F7FA",
-            width: "40px",
-            height: "40px",
-            mr: 2,
+            border: "2px solid #fff",
+            backgroundColor: "#8AB4F8",
+            width: "30px",
+            height: "30px",
           }}
         >
           <Typography
             variant="h6"
             sx={{
-              fontSize: "24px",
+              fontSize: "20px",
               fontWeight: "bold",
-              color: "#007BFF",
+              color: "white",
+              transform: "rotate(-90deg)",
             }}
           >
             ✈
