@@ -13,7 +13,7 @@ const BreadCrumbs = () => {
       underline="hover"
       key="1"
       color="inherit"
-      href="/"
+      href="#"
       onClick={handleClick}
     >
       Flights
@@ -29,7 +29,7 @@ const BreadCrumbs = () => {
   }
 
   return (
-    <Stack style={{}}>
+    <Stack sx={{ marginY: "15px" }}>
       <Breadcrumbs
         separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"
