@@ -33,8 +33,9 @@ const FlightSearchBar = () => {
         gap: 2,
         my: 5,
         alignItems: "center",
-        padding: 1,
-        paddingBottom: 3,
+        padding: 2,
+
+        paddingBottom: 4,
         borderRadius: 2,
         backgroundColor: "#36373A",
         boxShadow: 2,
