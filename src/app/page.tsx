@@ -25,7 +25,7 @@ export default function Home() {
         <CheapFlights />
         <ExploreMap />
         <PopularAirports />
-        <FAQComponent />
+        <Faq />
         <MoreFlights />
       </main>
 
