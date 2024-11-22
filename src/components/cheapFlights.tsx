@@ -1,12 +1,10 @@
 import React from "react";
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  Container,
-  Grid2,
-} from "@mui/material";
+// import Image from "next/image";
+import Box from "@mui/material/Box";
+import Grid2 from "@mui/material/Grid2";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import { CardMedia, Typography, Container } from "@mui/material";
 
 const flightData = [
   {
@@ -15,7 +13,7 @@ const flightData = [
     dates: "Nov 25 – Dec 2",
     stops: "2 stops · 22 hr 48 min",
     airline: "Alaska, British Airways",
-    image: "https://via.placeholder.com/200", // Replace with actual image URL
+    image: "/flights_nc_dark_theme_4.svg",
   },
   {
     destination: "Rome",
@@ -23,7 +21,7 @@ const flightData = [
     dates: "Dec 5 – Dec 12",
     stops: "2 stops · 15 hr",
     airline: "ITA, Ethiopian",
-    image: "https://via.placeholder.com/200", // Replace with actual image URL
+    image: "/flights_nc_dark_theme_4.svg",
   },
   {
     destination: "New York",
@@ -31,7 +29,7 @@ const flightData = [
     dates: "Feb 2 – Feb 9",
     stops: "1 stop · 18 hr 25 min",
     airline: "Royal Air Maroc",
-    image: "https://via.placeholder.com/200", // Replace with actual image URL
+    image: "/flights_nc_dark_theme_4.svg",
   },
   {
     destination: "Paris",
@@ -39,7 +37,7 @@ const flightData = [
     dates: "Jan 24 – Jan 30",
     stops: "1 stop · 9 hr 45 min",
     airline: "Royal Air Maroc",
-    image: "https://via.placeholder.com/200", // Replace with actual image URL
+    image: "/flights_nc_dark_theme_4.svg",
   },
   {
     destination: "London",
@@ -47,7 +45,7 @@ const flightData = [
     dates: "Jan 31 – Feb 7",
     stops: "1 stop · 10 hr 15 min",
     airline: "Royal Air Maroc",
-    image: "https://via.placeholder.com/200", // Replace with actual image URL
+    image: "/flights_nc_dark_theme_4.svg",
   },
   {
     destination: "Singapore",
@@ -55,7 +53,7 @@ const flightData = [
     dates: "Nov 29 – Dec 5",
     stops: "1 stop · 27 hr 50 min",
     airline: "Turkish Airlines",
-    image: "https://via.placeholder.com/200", // Replace with actual image URL
+    image: "/flights_nc_dark_theme_4.svg",
   },
 ];
 
@@ -68,25 +66,44 @@ const CheapFlights = () => {
       <Typography variant="subtitle1" color="textSecondary" gutterBottom>
         Popular trips from Abuja
       </Typography>
-      <Grid2 container spacing={3}>
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-5">
         {flightData.map((flight, index) => (
-          <Grid2
-            xs={12}
-            sm={6} // 2 columns for tablets and above
-            key={index}
-          >
-            <Card sx={{ display: "flex", flexDirection: "column" }}>
+          <Grid2 xs={12} sm={4} key={index}>
+            <Card
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                boxShadow: "none",
+                background: "transparent",
+              }}
+            >
               <CardMedia
                 component="img"
                 height="140"
                 image={flight.image}
                 alt={flight.destination}
+                sx={{ height: "120px", borderRadius: "15px" }}
               />
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  {flight.destination}
-                </Typography>
-                <Typography variant="body1">{flight.price}</Typography>
+              <CardContent
+                className=""
+                sx={{
+                  paddingX: "0px",
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Typography gutterBottom sx={{ fontWeight: "500" }}>
+                    {flight.destination}
+                  </Typography>
+                  <Typography sx={{ fontWeight: "500" }}>
+                    {flight.price}
+                  </Typography>
+                </Box>
+
                 <Typography variant="body2" color="textSecondary">
                   {flight.dates}
                 </Typography>
@@ -100,7 +117,7 @@ const CheapFlights = () => {
             </Card>
           </Grid2>
         ))}
-      </Grid2>
+      </div>
     </Container>
   );
 };
