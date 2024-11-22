@@ -48,7 +48,7 @@ const FAQComponent = () => {
   return (
     <Container sx={{ py: 4 }}>
       {/* Title */}
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h6" gutterBottom>
         Frequently asked questions about flying from Abuja
       </Typography>
 
@@ -60,10 +60,11 @@ const FAQComponent = () => {
           onChange={handleChange(index)}
           sx={{
             mb: 1,
-            backgroundColor: "#1E1E1E",
             color: "white",
-            border: "1px solid #333",
-            borderRadius: "4px",
+            border: "none",
+
+            borderBottom: "2px solid #333",
+            background: "none",
             boxShadow: "none",
             "&:before": {
               display: "none", // Remove default MUI divider line
@@ -78,7 +79,7 @@ const FAQComponent = () => {
             <Typography>{faq.question}</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>{faq.answer}</Typography>
+            <Typography sx={{ color: "#9fa3a7" }}>{faq.answer}</Typography>
           </AccordionDetails>
         </Accordion>
       ))}
