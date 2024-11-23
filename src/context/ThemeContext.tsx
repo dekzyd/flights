@@ -1,6 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { lightTheme, darkTheme } from "../utils/themes";
 
@@ -11,7 +17,7 @@ const ThemeContext = createContext({
 
 export const useThemeContext = () => useContext(ThemeContext);
 
-export const ThemeContextProvider = ({ children }) => {
+export const ThemeContextProvider = ({ children }: { children: ReactNode }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {

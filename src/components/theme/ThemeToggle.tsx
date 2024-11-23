@@ -1,4 +1,4 @@
-"use client"; // This ensures the component is interactive
+"use client";
 
 import React from "react";
 import Button from "@mui/material/Button";

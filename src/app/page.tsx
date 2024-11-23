@@ -8,6 +8,7 @@ import PopularAirports from "@/components/popularAirports";
 import LanguageLocationCurrency from "@/components/Footer";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import ThemedImage from "@/components/ThemedImage";
+import FlightList from "@/components/FlightList";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
           <FlightSearchBar />
         </div>
         <Breadcrumbs />
+        <FlightList />
         <CheapFlights />
         <ExploreMap />
         <PopularAirports />
