@@ -1,10 +1,13 @@
+"use client";
 import Link from "next/link";
 import { Button, Typography } from "@mui/material";
 import LanguageIcon from "@mui/icons-material/Language";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import PaymentsOutlinedIcon from "@mui/icons-material/PaymentsOutlined";
+import { useLocationContext } from "@/context/LocationContext";
 
 const LanguageLocationCurrency = () => {
+  const { userLocation } = useLocationContext();
   return (
     <>
       <div className="px-20 flex flex-col gap-5 items-center border-transparent border-y border-solid my-5 py-5">
@@ -18,19 +21,19 @@ const LanguageLocationCurrency = () => {
           <Button variant="outlined" sx={{ borderRadius: "20px" }}>
             <LocationOnOutlinedIcon fontSize="small" sx={{ mr: "8px" }} />
             <Typography variant="button" sx={{ textTransform: "capitalize" }}>
-              Location . Nigeria
+              Location . {userLocation.country}
             </Typography>
           </Button>
           <Button variant="outlined" sx={{ borderRadius: "20px" }}>
             <PaymentsOutlinedIcon fontSize="small" sx={{ mr: "8px" }} />
             <Typography variant="button" sx={{ textTransform: "capitalize" }}>
-              Currency . NGN
+              Currency . {userLocation.currency}
             </Typography>
           </Button>
         </div>
         <p className="text-center text-sm w-2/3">
           Current language and currency options applied: English (United States)
-          - Nigeria - NGN
+          - {userLocation.country} - {userLocation.currency}
           <br />
           Displayed currencies may differ from the currencies used to purchase
           flights.{" "}
