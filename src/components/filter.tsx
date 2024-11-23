@@ -7,24 +7,52 @@ import {
   Button,
   MenuItem,
   Select,
-  InputLabel,
   FormControl,
   IconButton,
 } from "@mui/material";
+import { useState } from "react";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
+import EastIcon from "@mui/icons-material/East";
 import SearchIcon from "@mui/icons-material/Search";
+import RepeatIcon from "@mui/icons-material/Repeat";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import dayjs from "dayjs";
+import { useLocationContext } from "@/context/LocationContext";
+
+type formDataType = {
+  tripType: string;
+  passengers: number;
+  class: string;
+  departure: Date;
+  return?: Date | string;
+  from: string;
+  to: string;
+};
 
 const FlightSearchBar = () => {
-  const [tripType, setTripType] = React.useState("roundtrip");
-  const [passengers, setPassengers] = React.useState(1);
-  const [travelClass, setTravelClass] = React.useState("economy");
-  const [departureDate, setDepartureDate] = React.useState(dayjs());
-  const [returnDate, setReturnDate] = React.useState(dayjs());
+  const { userLocation } = useLocationContext();
+  const [tripType, setTripType] = useState("roundtrip");
+  const [passengers, setPassengers] = useState(1);
+  const [travelClass, setTravelClass] = useState("economy");
+  const [departureDate, setDepartureDate] = useState(dayjs());
+  const [returnDate, setReturnDate] = useState(dayjs());
+  const [formData, setFormData] = useState<formDataType>({
+    tripType: "roundtrip",
+    passengers: 1,
+    class: "economy",
+    departure: new Date(),
+    return: "",
+    from: userLocation.state,
+    to: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
 
   return (
     <Box
@@ -34,7 +62,6 @@ const FlightSearchBar = () => {
         my: 5,
         alignItems: "center",
         padding: 2,
-
         paddingBottom: 4,
         borderRadius: 2,
         backgroundColor: "#36373A",
@@ -61,8 +88,12 @@ const FlightSearchBar = () => {
                 border: "none",
               },
             }}
-            value={tripType}
-            onChange={(e) => setTripType(e.target.value)}
+            value={formData.tripType}
+            onChange={(e) =>
+              setFormData((prev) => {
+                return { ...prev, tripType: e.target.value };
+              })
+            }
             label="Trip"
           >
             <MenuItem value="roundtrip" sx={{ fontSize: "14px" }}>
@@ -70,11 +101,11 @@ const FlightSearchBar = () => {
               Round Trip
             </MenuItem>
             <MenuItem value="oneway" sx={{ fontSize: "14px" }}>
-              <SwapHorizIcon sx={{ mr: 1 }} />
+              <EastIcon sx={{ mr: 1 }} />
               One Way
             </MenuItem>
             <MenuItem value="multi-city" sx={{ fontSize: "14px" }}>
-              <SwapHorizIcon sx={{ mr: 1 }} />
+              <RepeatIcon sx={{ mr: 1 }} />
               Multi-city
             </MenuItem>
           </Select>
@@ -88,11 +119,16 @@ const FlightSearchBar = () => {
                 border: "none",
               },
             }}
-            value={passengers}
-            onChange={(e) => setPassengers(e.target.value)}
+            value={formData.passengers}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                passengers: Number(e.target.value),
+              }))
+            }
             label="Passengers"
           >
-            {[...Array(10).keys()].map((num) => (
+            {[...Array(5).keys()].map((num) => (
               <MenuItem key={num + 1} value={num + 1}>
                 <Person2OutlinedIcon sx={{ mr: 1 }} />
                 {num + 1}
@@ -200,6 +236,7 @@ const FlightSearchBar = () => {
           borderRadius: "20px",
           fontSize: "14px",
         }}
+        onClick={handleSubmit}
       >
         <SearchIcon sx={{ marginRight: "4px" }} />
         Explore

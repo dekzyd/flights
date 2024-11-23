@@ -59,7 +59,7 @@ export const LocationContextProvider = ({
         const response = await fetch(url);
         const data = await response.json();
 
-        console.log(data);
+        // console.log(data);
 
         // Extract county, state, and country from the API response
         const { county, state, country } = data.results[0]?.components || {};
