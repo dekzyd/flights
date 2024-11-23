@@ -145,8 +145,10 @@ const FlightSearchBar = () => {
                 border: "none",
               },
             }}
-            value={travelClass}
-            onChange={(e) => setTravelClass(e.target.value)}
+            value={formData.class}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, class: e.target.value }))
+            }
             label="Class"
           >
             <MenuItem value="economy">Economy</MenuItem>
@@ -165,7 +167,10 @@ const FlightSearchBar = () => {
             size="small"
             label="From"
             variant="outlined"
-            defaultValue="Abuja ABV"
+            value={formData.from}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, from: e.target.value }))
+            }
             sx={{ minWidth: 160 }}
           />
 
@@ -181,7 +186,11 @@ const FlightSearchBar = () => {
             size="small"
             label="To"
             variant="outlined"
-            defaultValue="Europe"
+            placeholder="Where to?"
+            value={formData.to}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, to: e.target.value }))
+            }
             sx={{ minWidth: 160 }}
           />
         </Box>
