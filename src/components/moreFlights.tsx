@@ -1,16 +1,18 @@
 "use client";
-import * as React from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Grid2 from "@mui/material/Grid2";
+import Grid from "@mui/material/Grid2";
 import Link from "@mui/material/Link";
+import { useLocationContext } from "@/context/LocationContext";
 
 function MoreFlights() {
   const [tabValue, setTabValue] = React.useState(1); // Initially set to 'Flights from other cities' tab
+  const { userLocation } = useLocationContext();
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (event, newValue: number) => {
     setTabValue(newValue);
   };
 
@@ -39,89 +41,83 @@ function MoreFlights() {
         onChange={handleChange}
         sx={{ borderBottom: 2, borderColor: "divider", mt: 2 }}
       >
-        <Tab label="Popular destinations from Abuja" sx={tabStyle} />
+        <Tab
+          label={`Popular destinations from ${userLocation.state}`}
+          sx={tabStyle}
+        />
         <Tab label="Flights from other cities" sx={tabStyle} />
-        <Tab label="Flights to Abuja" sx={tabStyle} />
+        <Tab label={`Flights to ${userLocation.state}`} sx={tabStyle} />
       </Tabs>
 
-      <Grid2 container spacing={2} sx={{ mt: 2 }}>
+      <Grid container sx={{ mt: 2, justifyContent: "space-between" }}>
         {tabValue === 0 && (
           <div className="grid grid-cols-1 md:grid-cols-3 justify-between w-full gap-2">
             {/* Content for "Popular destinations from Abuja" tab */}
-            <Grid2 item xs={12} sm={4}>
+            <Grid size={{ xs: 12, sm: 4 }}>
               <Link href="#" underline="none" sx={{ fontSize: "15px" }}>
                 Flights from Lagos
               </Link>
-            </Grid2>
-            <Grid2 item xs={12} sm={4}>
+            </Grid>
+            <Grid size={{ xs: 12, sm: 4 }}>
               <Link href="#" underline="none" sx={{ fontSize: "15px" }}>
                 Flights from Yaoundé
               </Link>
-            </Grid2>
-            <Grid2 item xs={12} sm={4}>
+            </Grid>
+            <Grid size={{ xs: 12, sm: 4 }}>
               <Link href="#" underline="none" sx={{ fontSize: "15px" }}>
                 Flights from Abidjan
               </Link>
-            </Grid2>
-            <Grid2 item xs={12} sm={4}>
+            </Grid>
+            <Grid size={{ xs: 12, sm: 4 }}>
               <Link href="#" underline="none" sx={{ fontSize: "15px" }}>
                 Flights from Yaoundé
               </Link>
-            </Grid2>
-            <Grid2 item xs={12} sm={4}>
+            </Grid>
+            <Grid size={{ xs: 12, sm: 4 }}>
               <Link href="#" underline="none" sx={{ fontSize: "15px" }}>
                 Flights from Abidjan
               </Link>
-            </Grid2>
-            <Grid2 item xs={12} sm={4}>
+            </Grid>
+            <Grid size={{ xs: 12, sm: 4 }}>
               <Link href="#" underline="none" sx={{ fontSize: "15px" }}>
                 Flights from Abidjan
               </Link>
-            </Grid2>
+            </Grid>
           </div>
         )}
 
         {tabValue === 1 && (
           <div className="grid grid-cols-1 md:grid-cols-3 justify-between w-full gap-2">
-            <Grid2 item xs={4}>
+            <Grid size={{ xs: 12, sm: 4 }}>
               {/* Content for "Flights from other cities" tab */}
               <Link href="#" underline="none" sx={{ fontSize: "15px" }}>
                 Flights from Lagos
               </Link>
-
-              {/* Add more links as needed */}
-            </Grid2>
-            <Grid2 item xs={4}>
-              {/* Content for "Flights from other cities" tab */}
-
+            </Grid>
+            <Grid size={{ xs: 12, sm: 4 }}>
               <Link href="#" underline="none" sx={{ fontSize: "15px" }}>
                 Flights from Cotonou
               </Link>
-              {/* Add more links as needed */}
-            </Grid2>
-            <Grid2 item xs={4} flexDirection="column">
-              {/* Content for "Flights from other cities" tab */}
+            </Grid>
+            <Grid size={{ xs: 12, sm: 4 }}>
               <Link href="#" underline="none" sx={{ fontSize: "15px" }}>
                 Flights from Douala
               </Link>
-
-              {/* Add more links as needed */}
-            </Grid2>
+            </Grid>
           </div>
         )}
 
         {tabValue === 2 && (
           <div className="flex justify-between w-full">
-            <Grid2 item xs={12} sx={{ fontSize: "15px" }}>
+            <Grid size={{ xs: 12, sm: 4 }}>
               {/* Content for "Flights to Abuja" tab */}
               <Link href="#" underline="none">
-                Flights to Abuja
+                Flights to {userLocation.state}
               </Link>
-              {/* Add more links as needed */}
-            </Grid2>
+            </Grid>
           </div>
         )}
-      </Grid2>
+      </Grid>
     </Box>
   );
 }
