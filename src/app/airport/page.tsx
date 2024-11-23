@@ -1,6 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import { getUserLocation, findNearbyAirports } from "../../utils/api";
+import {
+  getUserLocation,
+  findNearbyAirports,
+  searchAirport,
+  getAvailableFlights,
+} from "../../utils/api";
 import { useLocationContext } from "@/context/LocationContext";
 
 type Airport = {
@@ -9,6 +14,16 @@ type Airport = {
   country: string;
   lat: number;
   lng: number;
+};
+
+const formData = {
+  departureDate: "2024-11-23",
+  flightClass: "economy",
+  from: "new",
+  passengers: 1,
+  returnDate: "",
+  to: "makurdi",
+  tripType: "roundtrip",
 };
 
 const Home: React.FC = () => {
@@ -24,10 +39,12 @@ const Home: React.FC = () => {
     setError(null);
 
     try {
-      // const location = await getUserLocation();
+      const location = await getUserLocation();
       // const results = await findNearbyAirports(location.lat, location.lng);
-      // setAirports(results);
-      // console.log(results);
+      // const results = await getAvailableFlights(formData);
+      const results = await searchAirport(formData.from);
+      setAirports(results);
+      console.log(results);
     } catch (err) {
       setError("Could not fetch nearby airports. Please try again.");
       console.error(err);
@@ -43,13 +60,6 @@ const Home: React.FC = () => {
         {loading ? "Loading..." : "Get Airports"}
       </button>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <ul>
-        {airports.map((airport, index) => (
-          <li key={index}>
-            {airport.name} - {airport.city}, {airport.country}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };

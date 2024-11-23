@@ -1,9 +1,13 @@
-type Airport = {
-  name: string;
-  city: string;
-  country: string;
-  lat: number;
-  lng: number;
+import { log } from "console";
+
+type formDataType = {
+  tripType: string;
+  passengers: number;
+  flightClass: string;
+  departureDate: Date | string;
+  returnDate?: Date | undefined;
+  from: string;
+  to: string;
 };
 
 export const getUserLocation = async (): Promise<{
@@ -25,6 +29,59 @@ export const getUserLocation = async (): Promise<{
       (error) => reject(error)
     );
   });
+};
+
+export const searchAirport = async (airport: string) => {
+  const API_KEY = process.env.NEXT_PUBLIC_RAPID_API_KEY as string;
+  const url = `https://sky-scrapper.p.rapidapi.com/api/v1/flights/searchAirport?query=${airport}&locale=en-US`;
+
+  const options = {
+    method: "GET",
+    headers: {
+      "x-rapidapi-key": API_KEY,
+      "x-rapidapi-host": "sky-scrapper.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    const { skyId, entityId } = result.data[0] || {};
+    return { skyId, entityId };
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAvailableFlights = async (formData: formDataType) => {
+  const {
+    tripType,
+    passengers,
+    flightClass,
+    departureDate,
+    returnDate,
+    from,
+    to,
+  } = formData;
+  const API_KEY = process.env.NEXT_PUBLIC_RAPID_API_KEY as string;
+  const url = `https://sky-scrapper.p.rapidapi.com/api/v2/flights/searchFlights?originSkyId=LOND&destinationSkyId=LOS&originEntityId=27544008&destinationEntityId=95673335&date=${departureDate}&returnDate=${returnDate}&cabinClass=${flightClass}&adults=${passengers}&sortBy=best&currency=NGN&market=en-US&countryCode=NG`;
+
+  const options = {
+    method: "GET",
+    headers: {
+      "x-rapidapi-key": API_KEY,
+      "x-rapidapi-host": "sky-scrapper.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    console.log(result);
+    return JSON.parse(result).data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const findNearbyAirports = async (
@@ -56,24 +113,4 @@ export const findNearbyAirports = async (
   } catch (error) {
     console.error(error);
   }
-
-  // if (!response.ok) {
-  //   throw new Error(`Error fetching airports: ${response.statusText}`);
-  // }
-
-  // const data = await response.json();
-
-  // const airports: Airport[] = data.results
-  //   .filter((result: any) =>
-  //     result.components._category?.includes("transport.air")
-  //   )
-  //   .map((result: any) => ({
-  //     name: result.components.airport || "Unknown Airport",
-  //     city: result.components.city || "Unknown City",
-  //     country: result.components.country || "Unknown Country",
-  //     lat: result.geometry.lat,
-  //     lng: result.geometry.lng,
-  //   }));
-
-  // return airports;
 };
