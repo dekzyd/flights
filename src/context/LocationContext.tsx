@@ -13,6 +13,7 @@ type Location = {
   county: string;
   state: string;
   country: string;
+  currency: string;
 };
 
 type LocationContextType = {
@@ -26,6 +27,7 @@ const LocationContext = createContext<LocationContextType>({
     county: "",
     state: "",
     country: "",
+    currency: "",
   },
   changeLocation: () => {},
 });
@@ -41,6 +43,7 @@ export const LocationContextProvider = ({
     county: "",
     state: "",
     country: "",
+    currency: "",
   });
 
   const API_KEY = process.env.NEXT_PUBLIC_OPENCAGE_API_KEY as string;
@@ -56,14 +59,18 @@ export const LocationContextProvider = ({
         const response = await fetch(url);
         const data = await response.json();
 
+        console.log(data);
+
         // Extract county, state, and country from the API response
         const { county, state, country } = data.results[0]?.components || {};
+        const currency = data.results[0]?.annotations.currency.iso_code || "";
 
-        if (county && state && country) {
+        if (county && state && country && currency) {
           setUserLocation({
             county,
             state,
             country,
+            currency,
           });
         } else {
           console.error(

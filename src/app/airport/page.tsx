@@ -17,6 +17,8 @@ const Home: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const { userLocation } = useLocationContext();
 
+  // console.log(userLocation);
+
   const fetchAirports = async () => {
     setLoading(true);
     setError(null);
@@ -26,7 +28,6 @@ const Home: React.FC = () => {
       // const results = await findNearbyAirports(location.lat, location.lng);
       // setAirports(results);
       // console.log(results);
-      console.log(userLocation);
     } catch (err) {
       setError("Could not fetch nearby airports. Please try again.");
       console.error(err);
