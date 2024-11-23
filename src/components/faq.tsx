@@ -8,6 +8,7 @@ import {
   Container,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useLocationContext } from "@/context/LocationContext";
 
 const faqs = [
   {
@@ -40,8 +41,9 @@ const faqs = [
 
 const FAQComponent = () => {
   const [expanded, setExpanded] = useState(false);
+  const { userLocation } = useLocationContext();
 
-  const handleChange = (panel) => (event, isExpanded) => {
+  const handleChange = (panel) => (event, isExpanded: number) => {
     setExpanded(isExpanded ? panel : false);
   };
 
@@ -49,7 +51,7 @@ const FAQComponent = () => {
     <Container sx={{ py: 4 }}>
       {/* Title */}
       <Typography variant="h6" gutterBottom>
-        Frequently asked questions about flying from Abuja
+        Frequently asked questions about flying from {userLocation.state}
       </Typography>
 
       {/* FAQ Accordions */}
