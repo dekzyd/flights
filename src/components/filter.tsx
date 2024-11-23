@@ -26,7 +26,7 @@ type formDataType = {
   tripType: string;
   passengers: number;
   class: string;
-  departure: Date;
+  departure: Date | string;
   return?: Date | string;
   from: string;
   to: string;
@@ -34,16 +34,11 @@ type formDataType = {
 
 const FlightSearchBar = () => {
   const { userLocation } = useLocationContext();
-  const [tripType, setTripType] = useState("roundtrip");
-  const [passengers, setPassengers] = useState(1);
-  const [travelClass, setTravelClass] = useState("economy");
-  const [departureDate, setDepartureDate] = useState(dayjs());
-  const [returnDate, setReturnDate] = useState(dayjs());
   const [formData, setFormData] = useState<formDataType>({
     tripType: "roundtrip",
     passengers: 1,
     class: "economy",
-    departure: new Date(),
+    departure: new Date().toISOString().split("T")[0],
     return: "",
     from: userLocation.state,
     to: "",
@@ -91,7 +86,11 @@ const FlightSearchBar = () => {
             value={formData.tripType}
             onChange={(e) =>
               setFormData((prev) => {
-                return { ...prev, tripType: e.target.value };
+                return {
+                  ...prev,
+                  tripType: e.target.value,
+                  return: e.target.value === "oneway" ? "" : prev.return,
+                };
               })
             }
             label="Trip"
@@ -201,16 +200,15 @@ const FlightSearchBar = () => {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               label="Departure"
-              value={departureDate}
-              onChange={(newValue) => setDepartureDate(newValue)}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  size="small"
-                  sx={{ minWidth: 200 }}
-                  className="flex-1"
-                />
-              )}
+              value={formData.departure ? dayjs(formData.departure) : null}
+              onChange={(newValue) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  departure: newValue
+                    ? newValue.toISOString().split("T")[0]
+                    : "",
+                }))
+              }
             />
           </LocalizationProvider>
 
@@ -218,17 +216,14 @@ const FlightSearchBar = () => {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               label="Return"
-              value={returnDate}
-              onChange={(newValue) => setReturnDate(newValue)}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  size="small"
-                  sx={{ minWidth: 200 }}
-                  className="flex-1"
-                />
-              )}
-              disabled={tripType === "oneway"}
+              value={formData.return ? dayjs(formData.return) : null}
+              onChange={(newValue) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  return: newValue ? newValue.toISOString().split("T")[0] : "",
+                }))
+              }
+              disabled={formData.tripType === "oneway"}
             />
           </LocalizationProvider>
         </Box>
