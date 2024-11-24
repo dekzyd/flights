@@ -4,6 +4,8 @@ import React, { createContext, useContext, useState } from "react";
 // Define the context type
 type GlobalContextType = {
   showTickets: boolean;
+  ticketsData: any;
+  setTicketsData: (value: any) => void;
   setShowTickets: (value: boolean) => void;
 };
 
@@ -11,6 +13,8 @@ type GlobalContextType = {
 const GlobalContext = createContext<GlobalContextType>({
   showTickets: false,
   setShowTickets: () => {},
+  ticketsData: [],
+  setTicketsData: () => {},
 });
 
 // Custom hook
@@ -23,9 +27,12 @@ export const GlobalContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [showTickets, setShowTickets] = useState<boolean>(false);
+  const [ticketsData, setTicketsData] = useState([]);
 
   return (
-    <GlobalContext.Provider value={{ showTickets, setShowTickets }}>
+    <GlobalContext.Provider
+      value={{ showTickets, setShowTickets, ticketsData, setTicketsData }}
+    >
       {children}
     </GlobalContext.Provider>
   );

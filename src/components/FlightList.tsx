@@ -1,100 +1,98 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { ticketDataClone } from "../app/data";
 import {
   Card,
   CardContent,
   Typography,
   Grid,
   Box,
-  Divider,
   Button,
 } from "@mui/material";
 
-interface Flight {
-  time: string;
-  airline: string;
-  duration: string;
-  stops: string;
-  co2: string;
-  price: string;
-  route: string;
-}
-
-const flights: Flight[] = [
-  {
-    time: "2:45 PM – 8:40 AM",
-    airline: "EgyptAir",
-    duration: "18 hr 55 min",
-    stops: "1 stop (8 hr 30 min CAI)",
-    co2: "639 kg CO₂",
-    price: "NGN 934,614",
-    route: "LOS – LHR",
-  },
-  {
-    time: "11:55 PM – 8:00 AM",
-    airline: "Air France",
-    duration: "9 hr 5 min",
-    stops: "1 stop (1 hr 25 min CDG)",
-    co2: "343 kg CO₂",
-    price: "NGN 2,032,639",
-    route: "LOS – LHR",
-  },
-  {
-    time: "11:55 PM – 6:25 PM",
-    airline: "Air France, KLM",
-    duration: "19 hr 30 min",
-    stops: "2 stops (CDG, AMS)",
-    co2: "408 kg CO₂",
-    price: "NGN 2,107,295",
-    route: "LOS – LCY",
-  },
-  {
-    time: "11:10 PM – 4:50 AM",
-    airline: "British Airways",
-    duration: "6 hr 40 min",
-    stops: "Nonstop",
-    co2: "320 kg CO₂",
-    price: "NGN 5,295,832",
-    route: "LOS – LHR",
-  },
-];
+import { useGlobalContext } from "@/context/GlobalContext";
 
 const FlightList = () => {
+  const { ticketsData } = useGlobalContext();
+  useEffect(() => {
+    console.log(ticketsData);
+  }, [ticketsData]);
+
+  const ticketArray = ticketsData.data?.itineraries;
+
+  // Transform the ticketArray into flightDetails
+  const flightDetails = ticketArray.map((flight: any) => {
+    const { legs, price } = flight;
+    const { logoUrl, name: carrierName } = legs[0].carriers.marketing[0];
+    const totalDuration = legs.reduce(
+      (acc: any, leg: any) => acc + leg.durationInMinutes,
+      0
+    ); // Summing up durations
+    const formattedPrice = price.formatted;
+    const stops = legs.reduce((acc: any, leg: any) => acc + leg.stopCount, 0);
+    const departureTime = legs[0].departure;
+    const arrivalTime = legs[legs.length - 1].arrival;
+    const originId = legs[0].origin.id;
+    const destinationId = legs[legs.length - 1].destination.id;
+
+    return {
+      logoUrl,
+      carrierName,
+      totalDuration,
+      formattedPrice,
+      stops,
+      departureTime,
+      arrivalTime,
+      originId,
+      destinationId,
+    };
+  });
+
   return (
     <Box sx={{ padding: 2, maxWidth: 800, margin: "auto" }}>
-      {flights.map((flight, index) => (
+      {flightDetails.map((flight: any, index: number) => (
         <Card key={index} sx={{ marginBottom: 2, borderRadius: 2 }}>
           <CardContent>
             <Grid container spacing={2} alignItems="center">
               {/* Time and Airline */}
               <Grid item xs={12} sm={4}>
-                <Typography variant="h6">{flight.time}</Typography>
+                <Typography variant="h6">
+                  {new Date(flight.departureTime).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}{" "}
+                  –{" "}
+                  {new Date(flight.arrivalTime).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {flight.airline}
+                  {flight.carrierName}
                 </Typography>
               </Grid>
 
               {/* Duration and Stops */}
               <Grid item xs={12} sm={3}>
-                <Typography variant="body1">{flight.duration}</Typography>
+                <Typography variant="body1">
+                  {Math.floor(flight.totalDuration / 60)} hr{" "}
+                  {flight.totalDuration % 60} min
+                </Typography>
                 <Typography variant="body2" color="error">
-                  {flight.stops}
+                  {flight.stops} stop{flight.stops !== 1 ? "s" : ""}
                 </Typography>
               </Grid>
 
-              {/* CO2 and Price */}
+              {/* Price */}
               <Grid item xs={12} sm={3}>
-                <Typography variant="body2" color="text.secondary">
-                  {flight.co2}
-                </Typography>
                 <Typography variant="h6" color="text.primary">
-                  {flight.price}
+                  {flight.formattedPrice}
                 </Typography>
               </Grid>
 
               {/* Route */}
               <Grid item xs={12} sm={2} textAlign="right">
                 <Typography variant="body2" color="text.secondary">
-                  {flight.route}
+                  {flight.originId} – {flight.destinationId}
                 </Typography>
                 <Button variant="outlined" size="small" sx={{ marginTop: 1 }}>
                   View details

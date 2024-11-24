@@ -1,5 +1,5 @@
 import { searchAirport, getAvailableFlights } from "@/utils/api";
-import { Dispatch, SetStateAction } from "react";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 const getTickets = async (
   data: {
@@ -11,7 +11,8 @@ const getTickets = async (
     departureDate: string;
     returnDate?: string;
   },
-  setShowTickets: Dispatch<SetStateAction<boolean>>
+  setShowTickets: (value: boolean) => void,
+  setTicketsData: (value: any) => void
 ) => {
   const { from, to } = data;
 
@@ -28,9 +29,6 @@ const getTickets = async (
     const { skyId: fromSkyId, entityId: fromEntityId } = fromDetails;
     const { skyId: toSkyId, entityId: toEntityId } = toDetails;
 
-    // console.log("From:", fromSkyId, fromEntityId);
-    // console.log("To:", toSkyId, toEntityId);
-
     try {
       const newData = {
         ...data,
@@ -41,8 +39,10 @@ const getTickets = async (
       };
 
       const result = await getAvailableFlights(newData);
-      console.log(result);
+      //   console.log(result);
+
       if (result) setShowTickets(true);
+      setTicketsData(result);
     } catch (error) {
       console.error("Error getting available flights:", error);
     }
