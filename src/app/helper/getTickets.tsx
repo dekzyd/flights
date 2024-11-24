@@ -1,14 +1,18 @@
 import { searchAirport, getAvailableFlights } from "@/utils/api";
+import { Dispatch, SetStateAction } from "react";
 
-const getTickets = async (data: {
-  from: string;
-  passengers: number;
-  to: string;
-  tripType: string;
-  flightClass: string;
-  departureDate: string;
-  returnDate?: string;
-}) => {
+const getTickets = async (
+  data: {
+    from: string;
+    passengers: number;
+    to: string;
+    tripType: string;
+    flightClass: string;
+    departureDate: string;
+    returnDate?: string;
+  },
+  setShowTickets: Dispatch<SetStateAction<boolean>>
+) => {
   const { from, to } = data;
 
   try {
@@ -24,8 +28,8 @@ const getTickets = async (data: {
     const { skyId: fromSkyId, entityId: fromEntityId } = fromDetails;
     const { skyId: toSkyId, entityId: toEntityId } = toDetails;
 
-    console.log("From:", fromSkyId, fromEntityId);
-    console.log("To:", toSkyId, toEntityId);
+    // console.log("From:", fromSkyId, fromEntityId);
+    // console.log("To:", toSkyId, toEntityId);
 
     try {
       const newData = {
@@ -38,6 +42,7 @@ const getTickets = async (data: {
 
       const result = await getAvailableFlights(newData);
       console.log(result);
+      if (result) setShowTickets(true);
     } catch (error) {
       console.error("Error getting available flights:", error);
     }

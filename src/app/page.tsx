@@ -1,3 +1,4 @@
+"use client";
 import Breadcrumbs from "@/components/breadcrumbs";
 import CheapFlights from "@/components/cheapFlights";
 import ExploreMap from "@/components/exploreMap";
@@ -9,8 +10,16 @@ import LanguageLocationCurrency from "@/components/Footer";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import ThemedImage from "@/components/ThemedImage";
 import FlightList from "@/components/FlightList";
+import { useGlobalContext } from "@/context/GlobalContext";
+import { useEffect } from "react";
 
 export default function Home() {
+  const { showTickets, setShowTickets } = useGlobalContext();
+
+  useEffect(() => {
+    console.log(showTickets);
+  }, [showTickets]);
+
   return (
     <div className="max-w-6xl my-0 mx-auto bg-slate-00">
       <ThemeToggle />
@@ -23,7 +32,7 @@ export default function Home() {
           <FlightSearchBar />
         </div>
         <Breadcrumbs />
-        <FlightList />
+        {showTickets && <FlightList />}
         <CheapFlights />
         <ExploreMap />
         <PopularAirports />
@@ -32,6 +41,7 @@ export default function Home() {
       </main>
 
       <LanguageLocationCurrency />
+      <button onClick={() => setShowTickets(!showTickets)}>toggle</button>
     </div>
   );
 }

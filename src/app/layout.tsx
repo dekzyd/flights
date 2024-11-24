@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeContextProvider } from "@/context/ThemeContext";
 import { LocationContextProvider } from "@/context/LocationContext";
+import { GlobalContextProvider } from "@/context/GlobalContext";
 
 export const metadata: Metadata = {
   title: "Flights",
@@ -21,7 +22,9 @@ export default function RootLayout({
 
       <body className="">
         <ThemeContextProvider>
-          <LocationContextProvider>{children}</LocationContextProvider>
+          <LocationContextProvider>
+            <GlobalContextProvider>{children}</GlobalContextProvider>
+          </LocationContextProvider>
         </ThemeContextProvider>
       </body>
     </html>

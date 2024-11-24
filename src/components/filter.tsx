@@ -22,6 +22,7 @@ import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import dayjs from "dayjs";
 import { useLocationContext } from "@/context/LocationContext";
 import getTickets from "@/app/helper/getTickets";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 type formDataType = {
   tripType: string;
@@ -35,6 +36,7 @@ type formDataType = {
 
 const FlightSearchBar = () => {
   const { userLocation } = useLocationContext();
+  const { setShowTickets } = useGlobalContext();
   const [formData, setFormData] = useState<formDataType>({
     tripType: "roundtrip",
     passengers: 1,
@@ -47,7 +49,7 @@ const FlightSearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getTickets(formData);
+    getTickets(formData, setShowTickets);
     // console.log(formData);
   };
 
