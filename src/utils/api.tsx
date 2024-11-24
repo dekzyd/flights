@@ -1,13 +1,15 @@
-import { log } from "console";
-
 type formDataType = {
   tripType: string;
   passengers: number;
   flightClass: string;
   departureDate: Date | string;
-  returnDate?: Date | undefined;
+  returnDate?: string | undefined;
   from: string;
   to: string;
+  fromSkyId?: string;
+  fromEntityId?: string;
+  toSkyId?: string;
+  toEntityId?: string;
 };
 
 export const getUserLocation = async (): Promise<{
@@ -55,16 +57,17 @@ export const searchAirport = async (airport: string) => {
 
 export const getAvailableFlights = async (formData: formDataType) => {
   const {
-    tripType,
     passengers,
     flightClass,
     departureDate,
     returnDate,
-    from,
-    to,
+    fromSkyId,
+    fromEntityId,
+    toSkyId,
+    toEntityId,
   } = formData;
   const API_KEY = process.env.NEXT_PUBLIC_RAPID_API_KEY as string;
-  const url = `https://sky-scrapper.p.rapidapi.com/api/v2/flights/searchFlights?originSkyId=LOND&destinationSkyId=LOS&originEntityId=27544008&destinationEntityId=95673335&date=${departureDate}&returnDate=${returnDate}&cabinClass=${flightClass}&adults=${passengers}&sortBy=best&currency=NGN&market=en-US&countryCode=NG`;
+  const url = `https://sky-scrapper.p.rapidapi.com/api/v2/flights/searchFlights?originSkyId=${fromSkyId}&destinationSkyId=${toSkyId}&originEntityId=${fromEntityId}&destinationEntityId=${toEntityId}&date=${departureDate}&returnDate=${returnDate}&cabinClass=${flightClass}&adults=${passengers}&sortBy=best&currency=NGN&market=en-US&countryCode=NG`;
 
   const options = {
     method: "GET",
@@ -77,8 +80,8 @@ export const getAvailableFlights = async (formData: formDataType) => {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    console.log(result);
-    return JSON.parse(result).data;
+    // console.log(result);
+    return result;
   } catch (error) {
     console.error(error);
   }

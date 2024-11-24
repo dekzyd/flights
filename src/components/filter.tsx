@@ -21,13 +21,14 @@ import RepeatIcon from "@mui/icons-material/Repeat";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import dayjs from "dayjs";
 import { useLocationContext } from "@/context/LocationContext";
+import getTickets from "@/app/helper/getTickets";
 
 type formDataType = {
   tripType: string;
   passengers: number;
   flightClass: string;
-  departureDate: Date | string;
-  returnDate?: Date | string;
+  departureDate: string;
+  returnDate?: string | undefined;
   from: string;
   to: string;
 };
@@ -46,7 +47,8 @@ const FlightSearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    getTickets(formData);
+    // console.log(formData);
   };
 
   return (
