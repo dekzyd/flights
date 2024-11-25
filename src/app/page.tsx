@@ -31,7 +31,7 @@ export default function Home() {
         <div className="">
           <FlightSearchBar />
         </div>
-        {showTickets && <Breadcrumbs />}
+        {/* {showTickets && <Breadcrumbs />} */}
         {showTickets && <FlightList />}
         <CheapFlights />
         <ExploreMap />
