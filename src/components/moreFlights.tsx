@@ -12,7 +12,7 @@ function MoreFlights() {
   const [tabValue, setTabValue] = useState(1);
   const { userLocation } = useLocationContext();
 
-  const handleChange = (newValue: number) => {
+  const handleChange = (event, newValue: number) => {
     setTabValue(newValue);
   };
 
