@@ -11,7 +11,7 @@ const getTickets = async (
     returnDate?: string;
   },
   setShowTickets: (value: boolean) => void,
-  setTicketsData: (value: any) => void,
+  setTicketsData: (value: any | undefined) => void,
   setIsLoading: (value: any) => void
 ) => {
   const { from, to } = data;

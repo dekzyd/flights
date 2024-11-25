@@ -6,7 +6,7 @@ type GlobalContextType = {
   showTickets: boolean;
   ticketsData: any;
   isLoading: boolean;
-  setTicketsData: (value: any) => void;
+  setTicketsData: (value: any | undefined) => void;
   setShowTickets: (value: boolean) => void;
   setIsLoading: (value: boolean) => void;
 };
