@@ -10,23 +10,56 @@ const LanguageLocationCurrency = () => {
   const { userLocation } = useLocationContext();
   return (
     <>
-      <div className="px-20 flex flex-col gap-5 items-center border-transparent border-y border-solid my-5 py-5">
-        <div className="flex gap-8">
+      <div className="flex flex-col gap-5 items-center border-transparent border-y border-solid my-5 py-5">
+        <div className="flex gap-2 md:gap-8">
           <Button variant="outlined" sx={{ borderRadius: "20px" }}>
-            <LanguageIcon fontSize="small" sx={{ mr: "8px" }} />
-            <Typography variant="button" sx={{ textTransform: "capitalize" }}>
+            <LanguageIcon
+              sx={{
+                fontSize: { xs: "12px", sm: "15px" },
+                mr: { xs: "2px", sm: "8px" },
+              }}
+            />
+            <Typography
+              variant="button"
+              sx={{
+                textTransform: "capitalize",
+                fontSize: { xs: "10px", sm: "15px" },
+              }}
+            >
               Language . English (United States)
             </Typography>
           </Button>
           <Button variant="outlined" sx={{ borderRadius: "20px" }}>
-            <LocationOnOutlinedIcon fontSize="small" sx={{ mr: "8px" }} />
-            <Typography variant="button" sx={{ textTransform: "capitalize" }}>
+            <LocationOnOutlinedIcon
+              sx={{
+                fontSize: { xs: "12px", sm: "15px" },
+                mr: { xs: "2px", sm: "8px" },
+              }}
+            />
+            <Typography
+              variant="button"
+              sx={{
+                textTransform: "capitalize",
+                fontSize: { xs: "10px", sm: "15px" },
+              }}
+            >
               Location . {userLocation.country}
             </Typography>
           </Button>
           <Button variant="outlined" sx={{ borderRadius: "20px" }}>
-            <PaymentsOutlinedIcon fontSize="small" sx={{ mr: "8px" }} />
-            <Typography variant="button" sx={{ textTransform: "capitalize" }}>
+            <PaymentsOutlinedIcon
+              sx={{
+                fontSize: { xs: "12px", sm: "15px" },
+                mr: { xs: "2px", sm: "8px" },
+              }}
+            />
+            <Typography
+              variant="button"
+              sx={{
+                textTransform: "capitalize",
+                fontSize: { xs: "10px", sm: "15px" },
+              }}
+            >
               Currency . {userLocation.currency}
             </Typography>
           </Button>
@@ -41,7 +74,7 @@ const LanguageLocationCurrency = () => {
             Learn more
           </Link>
         </p>
-        <div className="flex gap-5">
+        <div className="flex gap-3 md:gap-5">
           <Link href="#" className="text-[#AECBFA]">
             About
           </Link>
@@ -62,9 +95,9 @@ const LanguageLocationCurrency = () => {
           </Link>
         </div>
       </div>
-      <div className="px-20 mb-10 flex justify-center gap-20">
-        <button className="text-[#AECBFA]">International sites dropdown</button>
-        <button className="text-[#AECBFA]">Explore flights dropdown</button>
+      <div className="px-2 lg:px-20 mb-10 flex justify-center gap-10 lg:gap-20">
+        <button className="text-[#AECBFA]">International sites</button>
+        <button className="text-[#AECBFA]">Explore flights</button>
       </div>
     </>
   );

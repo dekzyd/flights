@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Tabs from "@mui/material/Tabs";
@@ -9,10 +9,10 @@ import Link from "@mui/material/Link";
 import { useLocationContext } from "@/context/LocationContext";
 
 function MoreFlights() {
-  const [tabValue, setTabValue] = React.useState(1); // Initially set to 'Flights from other cities' tab
+  const [tabValue, setTabValue] = useState(1);
   const { userLocation } = useLocationContext();
 
-  const handleChange = (event, newValue: number) => {
+  const handleChange = (newValue: number) => {
     setTabValue(newValue);
   };
 
@@ -24,9 +24,8 @@ function MoreFlights() {
   return (
     <Box
       sx={{
-        display: "flex",
+        display: { xs: "none", md: "flex" },
         flexDirection: "column",
-        // alignItems: "center",
         padding: 2,
       }}
     >

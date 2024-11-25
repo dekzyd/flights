@@ -73,14 +73,18 @@ const FlightSearchBar = () => {
       <Box
         sx={{
           display: "flex",
-          gap: 1,
-          flexWrap: "wrap",
+          // gap: 1,
+          // flexWrap: "wrap",
+          // padding: "0px",
           alignItems: "center",
           flexBasis: { xs: "100%", lg: "auto" },
         }}
       >
         {/* Trip Type Selector */}
-        <FormControl size="small" sx={{ minWidth: 170, fontSize: "14px" }}>
+        <FormControl
+          size="small"
+          sx={{ minWidth: { xs: 130, sm: 170 }, fontSize: "14px" }}
+        >
           <Select
             sx={{
               ".MuiOutlinedInput-notchedOutline": {
@@ -100,15 +104,24 @@ const FlightSearchBar = () => {
             }
             label="Trip"
           >
-            <MenuItem value="roundtrip" sx={{ fontSize: "14px" }}>
+            <MenuItem
+              value="roundtrip"
+              sx={{ fontSize: { xs: "12px", sm: "14px" } }}
+            >
               <SwapHorizIcon sx={{ mr: 1 }} />
               Round Trip
             </MenuItem>
-            <MenuItem value="oneway" sx={{ fontSize: "14px" }}>
+            <MenuItem
+              value="oneway"
+              sx={{ fontSize: { xs: "12px", sm: "14px" } }}
+            >
               <EastIcon sx={{ mr: 1 }} />
               One Way
             </MenuItem>
-            <MenuItem value="multi-city" sx={{ fontSize: "14px" }}>
+            <MenuItem
+              value="multi-city"
+              sx={{ fontSize: { xs: "12px", sm: "14px" } }}
+            >
               <RepeatIcon sx={{ mr: 1 }} />
               Multi-city
             </MenuItem>
@@ -116,7 +129,13 @@ const FlightSearchBar = () => {
         </FormControl>
 
         {/* Passengers Selector */}
-        <FormControl size="small" sx={{ minWidth: 100 }}>
+        <FormControl
+          size="small"
+          sx={{
+            minWidth: { xs: 80, sm: 100 },
+            fontSize: { xs: "10px", sm: "14px" },
+          }}
+        >
           <Select
             sx={{
               ".MuiOutlinedInput-notchedOutline": {
@@ -142,7 +161,13 @@ const FlightSearchBar = () => {
         </FormControl>
 
         {/* Travel Class Selector */}
-        <FormControl size="small" sx={{ minWidth: 120 }}>
+        <FormControl
+          size="small"
+          sx={{
+            minWidth: { xs: 100, sm: 120 },
+            fontSize: { xs: "10px", sm: "14px" },
+          }}
+        >
           <Select
             sx={{
               ".MuiOutlinedInput-notchedOutline": {
@@ -180,9 +205,11 @@ const FlightSearchBar = () => {
 
           <IconButton
             aria-label="swap locations"
-            sx={{ color: "text.secondary" }}
+            sx={{
+              color: "text.secondary",
+            }}
           >
-            <SwapHorizIcon />
+            <SwapHorizIcon sx={{ fontSize: { xs: "20px", sm: "24px" } }} />
           </IconButton>
 
           <TextField

@@ -22,7 +22,7 @@ export default function Home() {
   }, [showTickets]);
 
   return (
-    <div className="max-w-6xl my-0 mx-auto bg-slate-00">
+    <div className="max-w-6xl my-0 mx-auto">
       {/* <ThemeToggle /> */}
       <ThemedImage />
       <main className="px-2 md:px-4 lg:px-20">
@@ -39,10 +39,10 @@ export default function Home() {
         {/* <PopularAirports /> */}
         <Faq />
         <MoreFlights />
+        <LanguageLocationCurrency />
       </main>
 
-      <LanguageLocationCurrency />
-      <button onClick={() => setShowTickets(!showTickets)}>toggle</button>
+      {/* <button onClick={() => setShowTickets(!showTickets)}>toggle</button> */}
     </div>
   );
 }
