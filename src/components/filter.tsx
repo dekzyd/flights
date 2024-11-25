@@ -240,7 +240,7 @@ const FlightSearchBar = () => {
       {/* Search Button */}
       <Button
         variant="contained"
-        className="absolute right-[45%] -bottom-5"
+        className="absolute left-[35%] md:right-[40%] -bottom-5"
         size="small"
         sx={{
           textTransform: "capitalize",
@@ -251,7 +251,7 @@ const FlightSearchBar = () => {
         onClick={handleSubmit}
       >
         <SearchIcon sx={{ marginRight: "4px" }} />
-        Explore
+        Search
       </Button>
     </Box>
   );

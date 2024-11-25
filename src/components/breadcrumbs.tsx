@@ -5,9 +5,10 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { useLocationContext } from "@/context/LocationContext";
 
 const BreadCrumbs = () => {
-  const Location = "Abuja";
+  const { userLocation } = useLocationContext();
   const breadcrumbs = [
     <Link
       underline="hover"
@@ -19,7 +20,7 @@ const BreadCrumbs = () => {
       Flights
     </Link>,
     <Typography key="3" sx={{ color: "text.primary" }}>
-      from {Location}
+      from {userLocation.state}
     </Typography>,
   ];
 

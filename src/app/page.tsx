@@ -22,16 +22,16 @@ export default function Home() {
 
   return (
     <div className="max-w-6xl my-0 mx-auto bg-slate-00">
-      <ThemeToggle />
+      {/* <ThemeToggle /> */}
       <ThemedImage />
-      <main className="px-20">
+      <main className="px-2 md:px-4 lg:px-20">
         <h1 className="capitalize text-center font-normal text-5xl leading-[44px]">
           flights
         </h1>
         <div className="">
           <FlightSearchBar />
         </div>
-        <Breadcrumbs />
+        {showTickets && <Breadcrumbs />}
         {showTickets && <FlightList />}
         <CheapFlights />
         <ExploreMap />
