@@ -23,16 +23,13 @@ const FlightList = () => {
   const flightDetails = ticketArray.map((flight: any) => {
     const { legs, price } = flight;
     const { logoUrl, name: carrierName } = legs[0].carriers.marketing[0];
-    const totalDuration = legs.reduce(
-      (acc: any, leg: any) => acc + leg.durationInMinutes,
-      0
-    ); // Summing up durations
+    const totalDuration = legs[0].durationInMinutes;
     const formattedPrice = price.formatted;
     const stops = legs.reduce((acc: any, leg: any) => acc + leg.stopCount, 0);
     const departureTime = legs[0].departure;
-    const arrivalTime = legs[legs.length - 1].arrival;
+    const arrivalTime = legs[0].arrival;
     const originId = legs[0].origin.id;
-    const destinationId = legs[legs.length - 1].destination.id;
+    const destinationId = legs[0].destination.id;
 
     return {
       logoUrl,
@@ -49,6 +46,9 @@ const FlightList = () => {
 
   return (
     <Box sx={{ padding: 2, maxWidth: 800, margin: "auto" }}>
+      <Typography variant="h4" className="text-center mb-2 font-medium">
+        Available flights
+      </Typography>
       {flightDetails.map((flight: any, index: number) => (
         <Card key={index} sx={{ marginBottom: 2, borderRadius: 2 }}>
           <CardContent>

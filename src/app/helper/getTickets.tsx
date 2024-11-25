@@ -1,5 +1,4 @@
 import { searchAirport, getAvailableFlights } from "@/utils/api";
-import { useGlobalContext } from "@/context/GlobalContext";
 
 const getTickets = async (
   data: {
@@ -12,7 +11,8 @@ const getTickets = async (
     returnDate?: string;
   },
   setShowTickets: (value: boolean) => void,
-  setTicketsData: (value: any) => void
+  setTicketsData: (value: any) => void,
+  setIsLoading: (value: any) => void
 ) => {
   const { from, to } = data;
 
@@ -43,6 +43,7 @@ const getTickets = async (
 
       if (result) setShowTickets(true);
       setTicketsData(result);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error getting available flights:", error);
     }

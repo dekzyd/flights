@@ -36,7 +36,7 @@ type formDataType = {
 
 const FlightSearchBar = () => {
   const { userLocation } = useLocationContext();
-  const { setShowTickets, setTicketsData } = useGlobalContext();
+  const { setShowTickets, setTicketsData, setIsLoading } = useGlobalContext();
   const [formData, setFormData] = useState<formDataType>({
     tripType: "roundtrip",
     passengers: 1,
@@ -49,7 +49,8 @@ const FlightSearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getTickets(formData, setShowTickets, setTicketsData);
+    setIsLoading(true);
+    getTickets(formData, setShowTickets, setTicketsData, setIsLoading);
   };
 
   return (

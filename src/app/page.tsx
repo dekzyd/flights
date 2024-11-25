@@ -12,9 +12,10 @@ import ThemedImage from "@/components/ThemedImage";
 import FlightList from "@/components/FlightList";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { useEffect } from "react";
+import Loading from "@/components/Loading";
 
 export default function Home() {
-  const { showTickets, setShowTickets } = useGlobalContext();
+  const { showTickets, setShowTickets, isLoading } = useGlobalContext();
 
   useEffect(() => {
     console.log(showTickets);
@@ -31,11 +32,11 @@ export default function Home() {
         <div className="">
           <FlightSearchBar />
         </div>
-        {/* {showTickets && <Breadcrumbs />} */}
+        {isLoading && <Loading />}
         {showTickets && <FlightList />}
         <CheapFlights />
         <ExploreMap />
-        <PopularAirports />
+        {/* <PopularAirports /> */}
         <Faq />
         <MoreFlights />
       </main>
