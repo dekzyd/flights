@@ -63,7 +63,7 @@ const FlightSearchBar = () => {
         padding: 2,
         paddingBottom: 4,
         borderRadius: 2,
-        backgroundColor: "#36373A",
+        border: "1px solid #36373A",
         boxShadow: 2,
         maxWidth: "100%",
       }}

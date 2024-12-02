@@ -23,10 +23,10 @@ export default function Home() {
 
   return (
     <div className="max-w-6xl my-0 mx-auto">
-      {/* <ThemeToggle /> */}
+      <ThemeToggle />
       <ThemedImage />
       <main className="px-2 md:px-4 lg:px-20">
-        <h1 className="capitalize text-center font-normal text-5xl leading-[44px]">
+        <h1 className="capitalize text-center mt-5  font-normal text-5xl leading-[44px]">
           flights
         </h1>
         <div className="">

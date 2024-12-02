@@ -43,7 +43,7 @@ const FAQComponent = () => {
   const [expanded, setExpanded] = useState(false);
   const { userLocation } = useLocationContext();
 
-  const handleChange = (panel) => (event, isExpanded: number) => {
+  const handleChange = (panel) => (isExpanded: number) => {
     setExpanded(isExpanded ? panel : false);
   };
 
@@ -62,19 +62,12 @@ const FAQComponent = () => {
           onChange={handleChange(index)}
           sx={{
             mb: 1,
-            color: "white",
-            border: "none",
-
-            borderBottom: "2px solid #333",
             background: "none",
             boxShadow: "none",
-            "&:before": {
-              display: "none", // Remove default MUI divider line
-            },
           }}
         >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+            expandIcon={<ExpandMoreIcon />}
             aria-controls={`panel${index}-content`}
             id={`panel${index}-header`}
           >
