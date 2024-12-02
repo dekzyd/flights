@@ -153,7 +153,7 @@ const FlightSearchBar = () => {
           >
             {[...Array(5).keys()].map((num) => (
               <MenuItem key={num + 1} value={num + 1}>
-                <Person2OutlinedIcon sx={{ mr: 1 }} />
+                <Person2OutlinedIcon sx={{ mr: 1, fontSize: "16px" }} />
                 {num + 1}
               </MenuItem>
             ))}

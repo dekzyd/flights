@@ -23,6 +23,8 @@ const FlightList = () => {
       ? ticketsData.data.itineraries
       : [];
 
+  const numberOfTickets = ticketArray.length;
+
   // Transform the ticketArray into flightDetails
   const flightDetails = ticketArray.map((flight: Itinerary) => {
     const { legs, price } = flight;
@@ -50,6 +52,14 @@ const FlightList = () => {
       destinationId,
     };
   });
+
+  if (numberOfTickets < 1) {
+    return (
+      <Typography variant="h5" className="text-center mb-2 font-medium">
+        No available flights... Try searching again!
+      </Typography>
+    );
+  }
 
   return (
     <Box sx={{ padding: 2, maxWidth: 800, margin: "auto" }}>
