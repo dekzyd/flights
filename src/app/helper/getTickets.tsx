@@ -1,4 +1,5 @@
 import { searchAirport, getAvailableFlights } from "@/utils/api";
+import { FlightListType } from "@/types/FlightListType";
 
 const getTickets = async (
   data: {
@@ -11,8 +12,8 @@ const getTickets = async (
     returnDate?: string;
   },
   setShowTickets: (value: boolean) => void,
-  setTicketsData: (value: any | undefined) => void,
-  setIsLoading: (value: any) => void
+  setTicketsData: (value: FlightListType | undefined) => void,
+  setIsLoading: (value: boolean) => void
 ) => {
   const { from, to } = data;
 

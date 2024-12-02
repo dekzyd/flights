@@ -1,21 +1,29 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
+import { FlightListType } from "@/types/FlightListType";
 
 // Define the context type
 type GlobalContextType = {
   showTickets: boolean;
-  ticketsData: any;
+  ticketsData: FlightListType;
   isLoading: boolean;
-  setTicketsData: (value: any | undefined) => void;
+  setTicketsData: (value: FlightListType) => void;
   setShowTickets: (value: boolean) => void;
   setIsLoading: (value: boolean) => void;
+};
+
+const initialTicketData = {
+  status: false,
+  timestamp: 0,
+  sessionId: "",
+  data: "",
 };
 
 // Create the context
 const GlobalContext = createContext<GlobalContextType>({
   showTickets: false,
   setShowTickets: () => {},
-  ticketsData: [],
+  ticketsData: initialTicketData,
   setTicketsData: () => {},
   isLoading: false,
   setIsLoading: () => {},
@@ -32,7 +40,8 @@ export const GlobalContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [showTickets, setShowTickets] = useState<boolean>(false);
-  const [ticketsData, setTicketsData] = useState([]);
+  const [ticketsData, setTicketsData] =
+    useState<FlightListType>(initialTicketData);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   return (

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ticketDataClone } from "../app/data";
+
 import {
   Card,
   CardContent,
@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 
 import { useGlobalContext } from "@/context/GlobalContext";
+import { Itinerary, Leg } from "@/types/FlightListType";
 
 const FlightList = () => {
   const { ticketsData } = useGlobalContext();
@@ -17,15 +18,21 @@ const FlightList = () => {
     console.log(ticketsData);
   }, [ticketsData]);
 
-  const ticketArray = ticketsData.data?.itineraries;
+  const ticketArray =
+    typeof ticketsData.data === "object" && "itineraries" in ticketsData.data
+      ? ticketsData.data.itineraries
+      : [];
 
   // Transform the ticketArray into flightDetails
-  const flightDetails = ticketArray.map((flight: any) => {
+  const flightDetails = ticketArray.map((flight: Itinerary) => {
     const { legs, price } = flight;
     const { logoUrl, name: carrierName } = legs[0].carriers.marketing[0];
     const totalDuration = legs[0].durationInMinutes;
     const formattedPrice = price.formatted;
-    const stops = legs.reduce((acc: any, leg: any) => acc + leg.stopCount, 0);
+    const stops = legs.reduce(
+      (acc: number, leg: Leg) => acc + leg.stopCount,
+      0
+    );
     const departureTime = legs[0].departure;
     const arrivalTime = legs[0].arrival;
     const originId = legs[0].origin.id;
@@ -49,7 +56,7 @@ const FlightList = () => {
       <Typography variant="h4" className="text-center mb-2 font-medium">
         Available flights
       </Typography>
-      {flightDetails.map((flight: any, index: number) => (
+      {flightDetails.map((flight, index) => (
         <Card key={index} sx={{ marginBottom: 2, borderRadius: 2 }}>
           <CardContent>
             <Grid container spacing={2} alignItems="center">

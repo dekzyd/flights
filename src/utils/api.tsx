@@ -82,35 +82,32 @@ export const getAvailableFlights = async (formData: formDataType) => {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    // console.log(result);
+    console.log(result);
     return result;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const findNearbyAirports = async (
-  lat: number,
-  lng: number
-): Promise<Airport[]> => {
-  const API_KEY = process.env.NEXT_PUBLIC_RAPID_API_KEY as string;
-  const url =
-    "https://sky-scrapper.p.rapidapi.com/api/v2/flights/searchFlights?originSkyId=LOND&destinationSkyId=LOS&originEntityId=27544008&destinationEntityId=95673335&date=2024-11-24&cabinClass=economy&adults=1&sortBy=best&currency=NGN&market=en-US&countryCode=NG";
+// export const findNearbyAirports = async (lat: number, lng: number) => {
+//   const API_KEY = process.env.NEXT_PUBLIC_RAPID_API_KEY as string;
+//   const url =
+//     "https://sky-scrapper.p.rapidapi.com/api/v2/flights/searchFlights?originSkyId=LOND&destinationSkyId=LOS&originEntityId=27544008&destinationEntityId=95673335&date=2024-11-24&cabinClass=economy&adults=1&sortBy=best&currency=NGN&market=en-US&countryCode=NG";
 
-  const options = {
-    method: "GET",
-    headers: {
-      "x-rapidapi-key": API_KEY,
-      "x-rapidapi-host": "sky-scrapper.p.rapidapi.com",
-    },
-  };
+//   const options = {
+//     method: "GET",
+//     headers: {
+//       "x-rapidapi-key": API_KEY,
+//       "x-rapidapi-host": "sky-scrapper.p.rapidapi.com",
+//     },
+//   };
 
-  try {
-    const response = await fetch(url, options);
-    const result = await response.text();
-    console.log(result);
-    return JSON.parse(result).data;
-  } catch (error) {
-    console.error(error);
-  }
-};
+//   try {
+//     const response = await fetch(url, options);
+//     const result = await response.text();
+//     console.log(result);
+//     return JSON.parse(result).data;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
