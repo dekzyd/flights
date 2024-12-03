@@ -58,6 +58,7 @@ const FlightSearchBar = () => {
       sx={{
         flexDirection: { xs: "column", lg: "row" },
         gap: 2,
+        position: "relative",
         my: 5,
         alignItems: "center",
         padding: 2,
@@ -67,7 +68,6 @@ const FlightSearchBar = () => {
         boxShadow: 2,
         maxWidth: "100%",
       }}
-      className="relative"
     >
       {/* Trip Type, Passengers, and Class */}
       <Box
@@ -268,10 +268,11 @@ const FlightSearchBar = () => {
       {/* Search Button */}
       <Button
         variant="contained"
-        className="absolute left-[35%] md:right-[40%] -bottom-5"
+        className="absolut left-[35%] md:right-[40%] -bottom-5"
         size="small"
         sx={{
           textTransform: "capitalize",
+          position: "absolute",
           px: 2,
           borderRadius: "20px",
           fontSize: "14px",
