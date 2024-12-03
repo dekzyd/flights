@@ -40,12 +40,13 @@ const faqs = [
 ];
 
 const FAQComponent = () => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState<false | number>(false);
   const { userLocation } = useLocationContext();
 
-  const handleChange = (panel) => (isExpanded: number) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  const handleChange =
+    (panel: number) => (_: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
+    };
 
   return (
     <Container sx={{ py: 4 }}>
