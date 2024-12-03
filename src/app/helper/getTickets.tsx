@@ -12,9 +12,10 @@ const getTickets = async (
     returnDate?: string;
   },
   setShowTickets: (value: boolean) => void,
-  setTicketsData: (value: FlightListType | undefined) => void,
+  setTicketsData: (value: FlightListType) => void,
   setIsLoading: (value: boolean) => void
 ) => {
+  // get destination and departure location coordinates
   const { from, to } = data;
 
   try {
@@ -27,6 +28,7 @@ const getTickets = async (
       throw new Error("Could not fetch airport details.");
     }
 
+    // get airports sky and entity ids
     const { skyId: fromSkyId, entityId: fromEntityId } = fromDetails;
     const { skyId: toSkyId, entityId: toEntityId } = toDetails;
 
@@ -39,6 +41,7 @@ const getTickets = async (
         toEntityId,
       };
 
+      // get available flights
       const result = await getAvailableFlights(newData);
       //   console.log(result);
 

@@ -54,7 +54,7 @@ const CheapFlights = () => {
       </Typography>
       <div className="grid grid-cols-1 sm:grid-cols-4 gap-5">
         {flightData.map((flight, index) => (
-          <Grid2 xs={12} sm={4} key={index}>
+          <Grid2 columns={{ xs: 12, sm: 4 }} key={index}>
             <Card
               sx={{
                 display: "flex",
