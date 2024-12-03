@@ -12,7 +12,7 @@ function MoreFlights() {
   const [tabValue, setTabValue] = useState(1);
   const { userLocation } = useLocationContext();
 
-  const handleChange = (event, newValue: number) => {
+  const handleChange = (_: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
   };
 
@@ -51,7 +51,7 @@ function MoreFlights() {
       <Grid container sx={{ mt: 2, justifyContent: "space-between" }}>
         {tabValue === 0 && (
           <div className="grid grid-cols-1 md:grid-cols-3 justify-between w-full gap-2">
-            {/* Content for "Popular destinations from Abuja" tab */}
+            {/* Content for "Popular destinations from locations" tab */}
             <Grid size={{ xs: 12, sm: 4 }}>
               <Link href="#" underline="none" sx={{ fontSize: "15px" }}>
                 Flights from Lagos
