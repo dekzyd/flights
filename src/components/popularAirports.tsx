@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, Container, Card, CardContent } from "@mui/material";
 import { useLocationContext } from "@/context/LocationContext";
-import { searchAirport } from "../utils/api";
+// import { searchAirport } from "../utils/api";
 
 const PopularAirports = () => {
   const { userLocation } = useLocationContext();

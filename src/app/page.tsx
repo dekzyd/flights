@@ -1,11 +1,9 @@
 "use client";
-import Breadcrumbs from "@/components/breadcrumbs";
 import CheapFlights from "@/components/cheapFlights";
 import ExploreMap from "@/components/exploreMap";
 import Faq from "@/components/faq";
 import FlightSearchBar from "@/components/filter";
 import MoreFlights from "@/components/moreFlights";
-import PopularAirports from "@/components/popularAirports";
 import LanguageLocationCurrency from "@/components/Footer";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import ThemedImage from "@/components/ThemedImage";
@@ -15,7 +13,7 @@ import { useEffect } from "react";
 import Loading from "@/components/Loading";
 
 export default function Home() {
-  const { showTickets, setShowTickets, isLoading } = useGlobalContext();
+  const { showTickets, isLoading } = useGlobalContext();
 
   useEffect(() => {
     console.log(showTickets);
@@ -41,8 +39,6 @@ export default function Home() {
         <MoreFlights />
         <LanguageLocationCurrency />
       </main>
-
-      {/* <button onClick={() => setShowTickets(!showTickets)}>toggle</button> */}
     </div>
   );
 }

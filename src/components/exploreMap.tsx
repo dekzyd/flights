@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Button,
-  Container,
-  Card,
-  CardContent,
-} from "@mui/material";
+import { Box, Typography, Container } from "@mui/material";
 import { useLocationContext } from "@/context/LocationContext";
 
 const ExploreMap = () => {
